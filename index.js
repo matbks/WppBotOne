@@ -65,7 +65,7 @@ function now() {
   if (minutes < 10) {
     minutes = "0" + minutes;
   }
-  var time = hour + ":" + parseInt(minutes)-3;
+  var time = hour + ":" + (parseInt(minutes)-3).toString();
   return time;
 }
 
