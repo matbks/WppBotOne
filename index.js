@@ -27,7 +27,7 @@ client.initialize();
 
 app.use(bodyParser.json());
 
-app.post("/message", (req, res) => {
+app.post("/register", (req, res) => {
   var correctNumber = validNumber(req.body.number);
     console.log(correctNumber)
   if (correctNumber) {
