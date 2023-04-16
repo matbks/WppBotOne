@@ -1,3 +1,4 @@
+const phone = require("libphonenumber-js");
 const { Client, LocalAuth } = require("whatsapp-web.js");
 const qrcode = require("qrcode-terminal");
 const express = require("express");
@@ -44,7 +45,8 @@ app.listen(3000, () => {
 function validNumber(phoneNumber) {
   console.log("Validando", phoneNumber);
   phoneNumber =
-    parsePhoneNumber(phoneNumber, "BR")
+    phone
+      .parsePhoneNumber(phoneNumber, "BR")
       ?.format("E.164")
       ?.replace("+", "")
       ?.replace("-", "") || "";
