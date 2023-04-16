@@ -56,8 +56,10 @@ function validNumber(phoneNumber) {
   console.info("sera se tem 9", phoneNumber);
   console.info(phoneNumber[4]);
   if (phoneNumber.length < 13) {
-    console.info("n tem nova", phoneNumber);
-    phoneNumber = phoneNumber.slice(0, 4) + "9" + phoneNumber.slice(4);
+    console.info("não tem nove adicional", phoneNumber);
+    
+  } else{
+    phoneNumber = phoneNumber.slice(0, 4) + phoneNumber.slice(5);
   }
 
   phoneNumber = phoneNumber.includes("@c.us")
