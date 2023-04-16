@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 
 app.post("/message", (req, res) => {
   var correctNumber = validNumber(req.body.number);
-
+    console.log(correctNumber)
   if (correctNumber) {
     client.sendMessage(correctNumber, "Obrigado! Seu ponto foi registrado.");
   } else {
