@@ -32,7 +32,7 @@ app.post("/register", (req, res) => {
     console.log(correctNumber)
   if (correctNumber) {
   
-    client.sendMessage(correctNumber, "Obrigado! Seu ponto foi registrado agora " + formatDate(today, 'mm/dd/aa') + " .");
+    client.sendMessage(correctNumber, "Obrigado! Seu ponto foi registrado agora " + formatDate(new Date(), 'mm/dd/aa') + " .");
   } else {
     console.log("Falha no registro");
   }
