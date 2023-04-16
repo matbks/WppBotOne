@@ -31,7 +31,9 @@ app.post("/register", (req, res) => {
   var correctNumber = validNumber(req.body.number);
     console.log(correctNumber)
   if (correctNumber) {
-    client.sendMessage(correctNumber, "Obrigado! Seu ponto foi registrado.");
+    date = new Date();
+    time = date.getHours(); 
+    client.sendMessage(correctNumber, "Obrigado! Seu ponto foi registrado agora, " + date + " às " + time + " .");
   } else {
     console.log("Falha no registro");
   }
