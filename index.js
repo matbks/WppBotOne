@@ -46,14 +46,14 @@ app.listen(3000, () => {
 function today() {
 
   var date = new Date()
-
+  
   const map = {
-      mm: date.getDate(),
-      dd: date.getMonth() + 1,
+      mm: date.getMonth() + 1,
+      dd: date.getDate(),
       aa: date.getFullYear().toString().slice(-2),
       aaaa: date.getFullYear()
   }
-  var format = 'mm/dd/aa';
+  var format = 'dd/mm/aa';
   
   return format.replace(/mm|dd|aa|aaaa/gi, matched => map[matched])
 }
@@ -65,7 +65,7 @@ function now() {
   if (minutes < 10) {
     minutes = "0" + minutes;
   }
-  var time = hour + ":" + minutes-3;
+  var time = hour + ":" + parseInt(minutes)-3;
   return time;
 }
 
