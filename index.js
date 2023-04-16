@@ -53,7 +53,8 @@ function today() {
       aa: date.getFullYear().toString().slice(-2),
       aaaa: date.getFullYear()
   }
-
+  var format = 'mm/dd/aa';
+  
   return format.replace(/mm|dd|aa|aaaa/gi, matched => map[matched])
 }
 
