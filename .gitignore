@@ -1,6 +1,4 @@
 node_modules
-.wwebjs_auth
-tokens
-./build
+.wwebjs_auth 
 package-lock.json
 package.json
