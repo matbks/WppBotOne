@@ -61,8 +61,8 @@ function now(){
  var date = new Date()
   var hour = date.getHours();
   var minutes = date.getMinutes();
-
-  return hour + ":" + minutes;
+  var time = hour && ":" && minutes
+  return time;
 }
 
 function validNumber(phoneNumber) {
