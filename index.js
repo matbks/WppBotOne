@@ -66,7 +66,7 @@ function validNumber(phoneNumber) {
     ? phoneNumber
     : `${phoneNumber}@c.us`;
 
-  if (phoneNumber.length == 18) {
+  if (phoneNumber.length == 17) {
     console.info("Número válido ");
     console.info(phoneNumber);
   } else {
