@@ -32,7 +32,7 @@ app.post("/register", (req, res) => {
     console.log(correctNumber)
   if (correctNumber) {
   
-    client.sendMessage(correctNumber, "Obrigado! Seu ponto foi registrado agora " + today() + " às " + new Date().toLocaleTimeString() + ".");
+    client.sendMessage(correctNumber, "Obrigado! Seu ponto foi registrado agora " + today() + " às " + now() + ".");
   } else {
     console.log("Falha no registro");
   }
@@ -65,7 +65,7 @@ function now() {
   if (minutes < 10) {
     minutes = "0" + minutes;
   }
-  var time = hour + ":" + minutes;
+  var time = hour + ":" + minutes-3;
   return time;
 }
 
