@@ -32,7 +32,7 @@ app.post("/register", (req, res) => {
     console.log(correctNumber)
   if (correctNumber) {
   
-    client.sendMessage(correctNumber, "Obrigado! Seu ponto foi registrado agora " + formatDate(new Date(), 'mm/dd/aa') + " .");
+    client.sendMessage(correctNumber, "Obrigado! Seu ponto foi registrado agora " + today() + + " às " + now() + ".");
   } else {
     console.log("Falha no registro");
   }
@@ -43,15 +43,26 @@ app.listen(3000, () => {
   console.log("Web API listening on port 3000");
 });
 
-function formatDate(date, format) {
+function today() {
+
+  var date = new Date()
+
   const map = {
-      mm: date.getMonth() + 1,
-      dd: date.getDate(),
+      mm: date.getDate(),
+      dd: date.getMonth() + 1,
       aa: date.getFullYear().toString().slice(-2),
       aaaa: date.getFullYear()
   }
 
   return format.replace(/mm|dd|aa|aaaa/gi, matched => map[matched])
+}
+
+function now(){
+ var date = new Date()
+  var hour = date.getHours();
+  var minutes = date.getMinutes();
+
+  return hour + ":" + minutes;
 }
 
 function validNumber(phoneNumber) {
