@@ -57,11 +57,14 @@ function today() {
   return format.replace(/mm|dd|aa|aaaa/gi, matched => map[matched])
 }
 
-function now(){
- var date = new Date()
+function now() {
+  var date = new Date();
   var hour = date.getHours();
   var minutes = date.getMinutes();
-  var time = hour && ":" && minutes
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  var time = hour + ":" + minutes;
   return time;
 }
 
