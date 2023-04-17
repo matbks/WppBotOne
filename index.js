@@ -56,19 +56,7 @@ function today() {
   var format = 'dd/mm/aa';
   
   return format.replace(/mm|dd|aa|aaaa/gi, matched => map[matched])
-}
-
-// function now() {
-//   var date = new Date();
-//   var offset = date.getTimezoneOffset()
-//   var hour = date.getHours();
-//   var minutes = date.getMinutes();
-//   if (minutes < 10) {
-//     minutes = "0" + minutes;
-//   }
-//   var time = hour + ":" + minutes;
-//   return time;
-// }
+} 
 
 function now() {
   var date = new Date();
