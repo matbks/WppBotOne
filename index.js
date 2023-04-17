@@ -6,11 +6,13 @@ const bodyParser = require("body-parser");
 const app = express();
 
 const client = new Client({
-  args: [
+ puppeteer: {
+        args: [
           '--no-sandbox',
           '--disable-setuid-sandbox'
         ],
-  authStrategy: new LocalAuth(),
+        authStrategy: new LocalAuth()
+    }
 });
 
 
