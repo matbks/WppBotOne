@@ -6,8 +6,14 @@ const bodyParser = require("body-parser");
 const app = express();
 
 const client = new Client({
+  args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox'
+        ],
   authStrategy: new LocalAuth(),
 });
+
+
 
 client.on("qr", (qr) => {
   qrcode.generate(qr, { small: true });
