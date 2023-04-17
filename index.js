@@ -39,8 +39,8 @@ app.post("/register", (req, res) => {
   res.status(200).send("Message received!");
 });
 
-app.listen(3001, () => {
-  console.log("Web API listening on port 3001");
+app.listen(3002, () => {
+  console.log("Web API listening on port 3002");
 });
 
 function today() {
