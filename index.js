@@ -6,16 +6,11 @@ const bodyParser = require("body-parser");
 const app = express();
 
 const client = new Client({
- puppeteer: {
-        args: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox'
-        ],
-        authStrategy: new LocalAuth()
-    }
+  puppeteer: {
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    authStrategy: new LocalAuth(),
+  },
 });
-
-
 
 client.on("qr", (qr) => {
   qrcode.generate(qr, { small: true });
@@ -33,14 +28,35 @@ client.on("message", (message) => {
 
 client.initialize();
 
-app.use(bodyParser.json());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+
+  res.header(
+    "Access-Control-Allow-Header",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+    return res.status(200).send({});
+  }
+
+  next();
+});
 
 app.post("/register", (req, res) => {
   var correctNumber = validNumber(req.body.number);
-    console.log(correctNumber)
+  console.log(correctNumber);
   if (correctNumber) {
-  
-    client.sendMessage(correctNumber, "Obrigado! Seu ponto foi registrado agora " + today() + " às " + now() + ".");
+    client.sendMessage(
+      correctNumber,
+      "Obrigado! Seu ponto foi registrado agora " +
+        today() +
+        " às " +
+        now() +
+        "."
+    );
   } else {
     console.log("Falha no registro");
   }
@@ -52,24 +68,23 @@ app.listen(3002, () => {
 });
 
 function today() {
+  var date = new Date();
 
-  var date = new Date()
-  
   const map = {
-      mm: date.getMonth() + 1,
-      dd: date.getDate(),
-      aa: date.getFullYear().toString().slice(-2),
-      aaaa: date.getFullYear()
-  }
-  var format = 'dd/mm/aa';
-  
-  return format.replace(/mm|dd|aa|aaaa/gi, matched => map[matched])
-} 
+    mm: date.getMonth() + 1,
+    dd: date.getDate(),
+    aa: date.getFullYear().toString().slice(-2),
+    aaaa: date.getFullYear(),
+  };
+  var format = "dd/mm/aa";
+
+  return format.replace(/mm|dd|aa|aaaa/gi, (matched) => map[matched]);
+}
 
 function now() {
   var date = new Date();
-  var options = { timeZone: 'America/Sao_Paulo', hour12: false };
-  var time = date.toLocaleString('en-US', options).split(' ')[1];
+  var options = { timeZone: "America/Sao_Paulo", hour12: false };
+  var time = date.toLocaleString("en-US", options).split(" ")[1];
   return time;
 }
 
@@ -88,8 +103,7 @@ function validNumber(phoneNumber) {
   console.info(phoneNumber[4]);
   if (phoneNumber.length < 13) {
     console.info("não tem nove adicional", phoneNumber);
-    
-  } else{
+  } else {
     phoneNumber = phoneNumber.slice(0, 4) + phoneNumber.slice(5);
   }
 
