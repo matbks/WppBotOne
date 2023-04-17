@@ -58,14 +58,22 @@ function today() {
   return format.replace(/mm|dd|aa|aaaa/gi, matched => map[matched])
 }
 
+// function now() {
+//   var date = new Date();
+//   var offset = date.getTimezoneOffset()
+//   var hour = date.getHours();
+//   var minutes = date.getMinutes();
+//   if (minutes < 10) {
+//     minutes = "0" + minutes;
+//   }
+//   var time = hour + ":" + minutes;
+//   return time;
+// }
+
 function now() {
   var date = new Date();
-  var hour = date.getHours();
-  var minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = "0" + minutes;
-  }
-  var time = (parseInt(hour)-3).toString() + ":" + minutes;
+  var options = { timeZone: 'America/Sao_Paulo', hour12: false };
+  var time = date.toLocaleString('en-US', options).split(' ')[1];
   return time;
 }
 
